@@ -1,0 +1,42 @@
+name: Sync model card to Hugging Face
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - README.md
+      - scripts/prepare_huggingface.py
+      - .github/workflows/sync-huggingface.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: huggingface-model-card
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: github.repository == 'sevagh/gaborformer' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Generate model card
+        run: python -m scripts.prepare_huggingface --card-only
+      - name: Install Hugging Face CLI
+        run: python -m pip install 'huggingface_hub==2.4.0'
+      - name: Upload model card
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_HUB_DISABLE_UPDATE_CHECK: '1'
+        run: |
+          hf models info sevagh/gaborformer --quiet > /dev/null
+          hf upload sevagh/gaborformer .release/huggingface/README.md README.md \
+            --revision main --commit-message "Sync model card from GitHub ${GITHUB_SHA}"

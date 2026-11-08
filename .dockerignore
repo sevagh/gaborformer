@@ -1,0 +1,12 @@
+**
+!Dockerfile
+!pyproject.toml
+!README.md
+!LICENSE
+!gaborformer/
+!gaborformer/*.py
+!scripts/
+!scripts/__init__.py
+!scripts/listen.py
+!scripts/competitors.py
+!scripts/docker-requirements.txt

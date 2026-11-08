@@ -1,0 +1,27 @@
+{
+  "checkpoint": "gaborformer-fp32.safetensors",
+  "step": 60000,
+  "cfg": {
+    "frontend": "lin10.77-cq4k-bw43-u16k500@hop1024@timeinv@read10.77",
+    "bands": "budget10-mid-2k65",
+    "length": 352800,
+    "dim": 512,
+    "depth": 16,
+    "heads": 8,
+    "dim_head": 64,
+    "mask_depth": 2,
+    "mask_mult": 1
+  },
+  "precision": "fp32",
+  "overlap": 0.5,
+  "batch_size": 1,
+  "device": "cuda",
+  "torch": "2.8.0+cu128",
+  "clip_sha256": "9a26493653a4c21be44341ada5dbd07fc6e1070c85f55bcc2bcca1744e8bd6c2",
+  "stem_sha256": {
+    "vocals": "caffcc02b9a1ac5afb4aef669dd4fa410152e7b9c97da9c07aa7e62ce93e8c35",
+    "drums": "7826afa305ec716338e20f99323311414d37995ca7166cc4004ab855a4f23dbb",
+    "bass": "963f709a2a5c462f963a2375bfd0613374f639e8a370578bbcd7d3fd825d46ea",
+    "other": "3fc4a30846379787a10d2cef37db5cef826ad7c402b9d2358a62e5a82bf9190f"
+  }
+}

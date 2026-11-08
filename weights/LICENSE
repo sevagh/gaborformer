@@ -1,0 +1,9 @@
+Gaborformer pretrained weights
+Copyright (c) 2026 Sevag Hanssian
+
+The pretrained weights in this directory are released for non-commercial use only.
+They were trained exclusively on MUSDB18-HQ.
+
+The source code is licensed separately under the MIT license:
+https://github.com/sevagh/gaborformer/blob/main/LICENSE
+MUSDB18-HQ dataset information and terms: https://sigsep.github.io/datasets/musdb.html

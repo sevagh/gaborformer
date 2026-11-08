@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gaborformer"
+version = "1.0.0"
+description = "Music source separation: a band-split RoPE transformer on an invertible nonstationary Gabor transform (NSGT) front-end"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Sevag Hanssian" }]
+requires-python = ">=3.10"
+dependencies = ["torch>=2.4", "numpy", "soundfile", "soxr>=0.3.7", "safetensors", "huggingface_hub>=1.2,<2"]
+
+[project.urls]
+Repository = "https://github.com/sevagh/gaborformer"
+Models = "https://huggingface.co/sevagh/gaborformer"
+
+[project.optional-dependencies]
+eval = ["museval"]
+dev = ["pytest", "museval"]
+
+[project.scripts]
+gaborformer = "gaborformer.separate:main"
+
+[tool.setuptools.packages.find]
+include = ["gaborformer*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
