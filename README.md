@@ -34,31 +34,35 @@ Gaborformer has the highest average cSDR in the [MUSDB18-HQ-only comparison](doc
 
 Scores are **cSDR in dB (higher is better)** on the 50-track MUSDB18-HQ test set. Competitor scores come from the cited public benchmark tables; training splits and evaluation implementations differ.
 
+Parameter counts describe the complete system unless noted; `×` denotes separate stem models.
+
 ### A. Trained on MUSDB18-HQ only
 
-| System | Training songs | Avg | Vocals | Drums | Bass | Other |
-|---|---:|---:|---:|---:|---:|---:|
-| **Gaborformer** | **86** | **11.46** | **12.05** | **12.18** | **12.27** | **9.34** |
-| [DiCoSe (T=1)][dicose] | 100‡ | 10.41 | 11.02 | 12.15 | 10.20 | 8.27 |
-| [BS-RoFormer L=9][mel] | HQ train† | 10.02 | 11.02 | 9.66 | 11.58 | 7.80 |
-| [Moises-Light][moises] | 86 | 9.96 | 10.92 | 10.93 | 10.04 | 7.95 |
-| [SFC-Locoformer Medium][sfc] | 86 | 9.95 | 9.94 | 11.25 | 10.85 | 7.77 |
+| System | Parameters | Training songs | Avg | Vocals | Drums | Bass | Other |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| **Gaborformer** | **266.6M** | **86** | **11.46** | **12.05** | **12.18** | **12.27** | **9.34** |
+| [DiCoSe (T=1)][dicose] | 131M + 180M | 100‡ | 10.41 | 11.02 | 12.15 | 10.20 | 8.27 |
+| [BS-RoFormer L=9][mel] | 82.8M reported§ | HQ train† | 10.02 | 11.02 | 9.66 | 11.58 | 7.80 |
+| [Moises-Light][moises] | 4 × 5M | 86 | 9.96 | 10.92 | 10.93 | 10.04 | 7.95 |
+| [SFC-Locoformer Medium][sfc] | 16.0M | 86 | 9.95 | 9.94 | 11.25 | 10.85 | 7.77 |
 
 † The source does not specify the held-out validation split.
 
 ‡ DiCoSe's backbone training data are inferred from its upstream model listing; see [provenance details](docs/results.md#a-trained-on-musdb18-hq-only).
 
+§ The L=9 source reports 82.8M parameters without an explicit combined four-stem system count.
+
 ### B. Systems trained with extra data
 
-| System | Training data | Avg | Vocals | Drums | Bass | Other |
-|---|---|---:|---:|---:|---:|---:|
-| [BS-RoFormer L=12, SDX'23 winner][bsrf] | HQ + 450 train / 50 validation | 11.99 | 12.72 | 12.91 | 13.32 | 9.01 |
-| *Gaborformer* | *86 HQ songs only* | *11.46* | *12.05* | *12.18* | *12.27* | *9.34* |
-| [Moises-Light + MoisesDB][moises-extra] | 86 HQ + 235 MoisesDB | 10.31 | 11.10 | 11.10 | 10.77 | 8.28 |
-| [SCNet-large + MoisesDB][scnet] | 100 HQ + 235 MoisesDB | 9.92 | 11.10 | 11.23 | 9.86 | 7.51 |
-| [BS-Locoformer Large + MixIT][mixit] | 86 HQ + ~890 h unlabeled FMA | 9.90 | 10.39 | 10.96 | 10.21 | 8.06 |
+| System | Parameters | Training data | Avg | Vocals | Drums | Bass | Other |
+|---|---:|---|---:|---:|---:|---:|---:|
+| [BS-RoFormer L=12, SDX'23 winner][bsrf] | 3 × 93.4M | HQ + 450 train / 50 validation | 11.99 | 12.72 | 12.91 | 13.32 | 9.01 |
+| *Gaborformer* | *266.6M* | *86 HQ songs only* | *11.46* | *12.05* | *12.18* | *12.27* | *9.34* |
+| [Moises-Light + MoisesDB][moises-extra] | 4 × 5M | 86 HQ + 235 MoisesDB | 10.31 | 11.10 | 11.10 | 10.77 | 8.28 |
+| [SCNet-large + MoisesDB][scnet] | 41.2M | 100 HQ + 235 MoisesDB | 9.92 | 11.10 | 11.23 | 9.86 | 7.51 |
+| [BS-Locoformer Large + MixIT][mixit] | Not reported | 86 HQ + ~890 h unlabeled FMA | 9.90 | 10.39 | 10.96 | 10.21 | 8.06 |
 
-[Full results](docs/results.md) include parameter counts, evaluation settings and caveats, and our measured head-to-head with BS-RoFormer-SW.
+[Full results](docs/results.md) include evaluation settings, source details, and our measured head-to-head with BS-RoFormer-SW.
 
 ## Keep experimenting
 
